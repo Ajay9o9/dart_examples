@@ -24,38 +24,27 @@ extension Log on Object {
   void log() => devtools.log(toString());
 }
 
-enum Type { Cat, Dog }
-
 abstract class CanRun {
-  final Type type;
-
-  const CanRun({required this.type});
-
-  @mustCallSuper
   void run() {
-    "Canrun run function is called ".log();
+    "Running....".log();
   }
 }
 
-class Cat extends CanRun {
-  const Cat() : super(type: Type.Cat);
-  @override
-  void run() {
-    super.run();
-    // TODO: implement run
+abstract class CanWalk {
+  void walk() {
+    "walking...".log();
   }
 }
 
-class Dog extends CanRun {
-  Dog() : super(type: Type.Dog);
-}
+class Cat with CanRun, CanWalk {}
 
 void testIt() {
   final cat = Cat();
-  cat.type.log();
-
-  final dog = Dog();
-  dog.type.log();
+  cat
+    ..run()
+    ..walk();
+  // cat.run();
+  // cat.walk();
 }
 
 class HomePage extends StatefulWidget {
