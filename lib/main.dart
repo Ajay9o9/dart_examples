@@ -25,6 +25,14 @@ extension Log on Object {
 }
 
 abstract class CanRun {
+  String get type {
+    if (this is Cat) {
+      return 'Cat';
+    } else {
+      return 'Something else';
+    }
+  }
+
   @mustCallSuper
   void run() {
     "Canrun run function is called ".log();
@@ -39,10 +47,14 @@ class Cat extends CanRun {
   }
 }
 
+class Dog extends CanRun {}
+
 void testIt() {
-  'testit'.log();
   final cat = Cat();
-  cat.run();
+  cat.type.log();
+
+  final dog = Dog();
+  dog.type.log();
 }
 
 class HomePage extends StatefulWidget {
